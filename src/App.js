@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Dimmer, Loader, Message, Sidebar, Segment } from "semantic-ui-react";
+import { Container, Dimmer, Loader, Message, Sidebar, Segment, Header } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Calendar from "./components/Calendar";
@@ -16,22 +16,27 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Sidebar.Pushable as={Segment}>
-      <SidebarComponent />
+    <>
+      {events.loadingState === "loading" &&
+        <Dimmer active>
+          <Loader>Loading</Loader>
+        </Dimmer>}
 
-      <Sidebar.Pusher as={Container} className="application">
-        {events.loadingState === "loading" &&
-          <Dimmer active>
-            <Loader>Loading</Loader>
-          </Dimmer>}
-        {events.loadingState === "failed" &&
-          <Message negative>
-            <Message.Header>Looks like, something went wrong</Message.Header>
-            <p>{events.error}</p>
-          </Message>}
-        {events.loadingState === "succeed" && <Calendar />}
-      </Sidebar.Pusher>
-    </Sidebar.Pushable>
+      {events.loadingState === "failed" &&
+        <Message negative>
+          <Message.Header>Looks like, something went wrong</Message.Header>
+          <p>{events.error}</p>
+        </Message>}
+
+      {events.loadingState === "succeed" &&
+        <Sidebar.Pushable as={Segment}>
+          <SidebarComponent />
+          <Sidebar.Pusher as={Container} className="application">
+            <Header as="h1" textAlign="center">Calendar</Header>
+            <Calendar />
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>}
+    </>
 
   );
 }
