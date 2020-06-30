@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Calendar from "./components/Calendar";
 import SidebarComponent from "./components/SidebarComponent";
 import { eventsLoadStart } from "./store/actions/events"
-import './App.css';
+import './App.scss';
 
 function App() {
   const events = useSelector(state => state.events);

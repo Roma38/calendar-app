@@ -11,7 +11,7 @@ function SidebarComponent() {
         inverted
         onHide={() => { }}
         // vertical
-        visible={true}
+        visible={false}
       // width='thin'
       >
         <Header as="h2" inverted>Legend</Header>

@@ -1,0 +1,35 @@
+$rowHeight: 42px;
+
+.application.ui.container {
+  min-height: 100vh;  
+}
+
+#root .ui.segment.pushable {
+  border: none;
+}
+
+.calendar td {
+  box-sizing: border-box;
+  width: (100% / 8);
+  height: $rowHeight;
+  overflow: hidden;
+}
+
+.calendar-wrapper {
+  position: relative;
+}
+
+.events-layer {
+  position: absolute;
+  width: 100% * 7 / 8;
+  height: 40 * $rowHeight;
+  display: flex;
+  right: 0;
+  bottom: 0;
+}
+
+.events-layer__col {
+  height: 100%;
+  flex-grow: 1;
+}
+
