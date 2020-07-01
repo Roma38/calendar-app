@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Container, Dimmer, Loader, Message, Sidebar, Segment, Header } from "semantic-ui-react";
+import { Container, Dimmer, Loader, Message, Header } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Calendar from "./components/Calendar";
-import SidebarComponent from "./components/SidebarComponent";
+import Sidebar from "./components/Sidebar";
 import { eventsLoadStart } from "./store/actions/events"
 import './App.scss';
 
@@ -28,14 +28,15 @@ function App() {
           <p>{events.error}</p>
         </Message>}
 
-      {events.loadingState === "succeed" &&
-        <Sidebar.Pushable as={Segment}>
-          <SidebarComponent />
-          <Sidebar.Pusher as={Container} className="application">
-            <Header as="h1" textAlign="center">Calendar</Header>
-            <Calendar />
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>}
+      {events.loadingState === "succeed" && <>
+        {/* <Sidebar.Pushable as={Segment}> */}        
+        <Container as="main" className="application">
+          <Header as="h1" textAlign="center">Calendar</Header>
+          <Calendar />
+        </Container>
+        <Sidebar />
+        {/* </Sidebar.Pushable>} */}
+      </>}
     </>
 
   );

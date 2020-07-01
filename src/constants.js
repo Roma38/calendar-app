@@ -18,10 +18,10 @@ export const fakeData = [
     "start": "2020-07-01T12:00:00.834Z",
     "end": "2020-07-01T15:00:00.834Z",
     "type": 1,
-    "comment": null
+    "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec erat risus, fringilla eget suscipit eu, tempor eu nisi. Suspendisse quam dui, consequat quis tempus vel, tristique a risus. Aliquam facilisis purus quis maximus dignissim. Mauris mi risus, mollis condimentum semper sit amet, interdum a nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque venenatis elit nec pretium imperdiet. Nunc ut eros enim. Quisque eros nulla, rhoncus vitae convallis ut, aliquet ut nisl. Phasellus placerat massa eu mattis faucibus. Mauris laoreet, urna in consequat egestas, tortor ex molestie lectus, sit amet suscipit urna diam a dui. Vivamus maximus vitae nunc ac molestie. Sed dapibus ligula non mauris vestibulum pulvinar."
   },
   {
-    "id": 3,
+    "id": 4,
     "start": "2020-07-02T08:00:00.834Z",
     "end": "2020-07-02T10:00:00.834Z",
     "type": 1,

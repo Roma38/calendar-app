@@ -1,20 +1,11 @@
 import React from 'react';
-import { Sidebar, Segment, List, Header, Button } from "semantic-ui-react";
+import { List, Header, Button } from "semantic-ui-react";
 
 
-function SidebarComponent() {
+function Sidebar() {
   // TODO: сделать нормально
   return (
-      <Sidebar
-        as={Segment}
-        animation='overlay'
-        direction="right"
-        inverted
-        onHide={() => { }}
-        // vertical
-        visible={true}
-      // width='thin'
-      >
+      <aside className="sidebar">
         <Header as="h2" inverted>Legend</Header>
 
         <List inverted>
@@ -45,9 +36,9 @@ function SidebarComponent() {
         </List>
 
         <Button primary>+ Add new event</Button>
-      </Sidebar>
+      </aside>
 
   );
 }
 
-export default SidebarComponent;
+export default Sidebar;

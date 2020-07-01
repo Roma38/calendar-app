@@ -2,10 +2,25 @@ $rowHeight: 42px;
 
 .application.ui.container {
   min-height: 100vh;  
+  overflow: auto;
+  padding: 30px 10px;
 }
 
-#root .ui.segment.pushable {
-  border: none;
+.sidebar {
+  height: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+#root {
+  display: flex;
+  min-height: 100%;
+  height: 1px;
 }
 
 .calendar td {
