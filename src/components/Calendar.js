@@ -17,7 +17,7 @@ const timeSection = time => <Fragment key={time}>
 </Fragment>
 
 function Calendar() {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(new Date("2019-08-05T09:00:00+04:00").setHours(0, 0, 0, 0)));
   const events = useSelector(state => state.events.items);
 
   const weekDays = calculateWeek(date);
@@ -32,7 +32,7 @@ function Calendar() {
 
       <div className="calendar-wrapper">
         <div className="events-layer">
-          {weekDays.map(date => <EventColumn key={date} events={filterEvents(date, events)} />)}
+          {weekDays.map(date => <EventColumn key={date} date={date} events={filterEvents(date, events)} />)}
         </div>
 
         <Table definition celled className="calendar">

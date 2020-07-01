@@ -3,6 +3,7 @@ import { Sidebar, Segment, List, Header, Button } from "semantic-ui-react";
 
 
 function SidebarComponent() {
+  // TODO: сделать нормально
   return (
       <Sidebar
         as={Segment}
@@ -11,7 +12,7 @@ function SidebarComponent() {
         inverted
         onHide={() => { }}
         // vertical
-        visible={false}
+        visible={true}
       // width='thin'
       >
         <Header as="h2" inverted>Legend</Header>
