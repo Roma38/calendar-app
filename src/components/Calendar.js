@@ -1,9 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import { Table, Header } from "semantic-ui-react";
+import { useSelector } from "react-redux";
 
 import EventColumn from "./EventColumn";
-import { weekDays, timeRows } from "../constants";
-import { calculateWeek } from "../utils";
+import { timeRows } from "../constants";
+import { calculateWeek, filterEvents } from "../utils";
 
 const timeSection = time => <Fragment key={time}>
   <Table.Row>
@@ -17,18 +18,21 @@ const timeSection = time => <Fragment key={time}>
 
 function Calendar() {
   const [date, setDate] = useState(new Date());
+  const events = useSelector(state => state.events.items);
+
   const weekDays = calculateWeek(date);
 
   return (
     <>
+      {/*TODO: В заголовке отображается месяц и год выбраной даты. Сделать как положено */}
       <Header as="h2" textAlign="center">
-        {`${date.toDateString().slice(4, 7)} ${new Date(weekDays[0]).getDate()} 
-        -  ${new Date(weekDays[6]).getDate()}, ${date.getFullYear()}`}
+        {`${date.toDateString().slice(4, 7)} ${weekDays[0].getDate()} 
+        -  ${weekDays[6].getDate()}, ${date.getFullYear()}`}
       </Header>
 
       <div className="calendar-wrapper">
         <div className="events-layer">
-          {[...Array(7)].map((_, index) => <EventColumn key={index} />)}
+          {weekDays.map(date => <EventColumn key={date} events={filterEvents(date, events)} />)}
         </div>
 
         <Table definition celled className="calendar">
@@ -36,7 +40,7 @@ function Calendar() {
             <Table.Row>
               <Table.HeaderCell />
               {weekDays.map(weekDay => <Table.HeaderCell key={weekDay}>
-                {new Date(weekDay).toDateString().slice(0, 10)}
+                {weekDay.toDateString().slice(0, 10)} {/* TODO: Исправить */}
               </Table.HeaderCell>)}
             </Table.Row>
           </Table.Header>
