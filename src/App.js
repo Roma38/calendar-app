@@ -29,13 +29,11 @@ function App() {
         </Message>}
 
       {events.loadingState === "succeed" && <>
-        {/* <Sidebar.Pushable as={Segment}> */}        
         <Container as="main" className="application">
           <Header as="h1" textAlign="center">Calendar</Header>
           <Calendar />
         </Container>
         <Sidebar />
-        {/* </Sidebar.Pushable>} */}
       </>}
     </>
 

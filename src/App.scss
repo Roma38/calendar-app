@@ -1,26 +1,26 @@
 $rowHeight: 42px;
 
 .application.ui.container {
-  min-height: 100vh;  
-  overflow: auto;
   padding: 30px 10px;
 }
 
 .sidebar {
-  height: 100%;
+  height: 100vh;
   background-color: black;
   color: white;
-  padding: 10px;
+  padding: 30px 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30px;
-}
+  max-width: 300px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  // to fix ie11 issues
+  .ui.list .list > .item > .icon + .content, .ui.list .list > .item > .image + .content, .ui.list > .item > .icon + .content, .ui.list > .item > .image + .content {
+    width: auto;
+  }
 
-#root {
-  display: flex;
-  min-height: 100%;
-  height: 1px;
 }
 
 .calendar td {
@@ -32,6 +32,7 @@ $rowHeight: 42px;
 
 .calendar-wrapper {
   position: relative;
+  margin-right: 300px;
 }
 
 .events-layer {

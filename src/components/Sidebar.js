@@ -3,7 +3,6 @@ import { List, Header, Button } from "semantic-ui-react";
 
 
 function Sidebar() {
-  // TODO: сделать нормально
   return (
       <aside className="sidebar">
         <Header as="h2" inverted>Legend</Header>
