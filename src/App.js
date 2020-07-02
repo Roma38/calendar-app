@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Dimmer, Loader, Message, Header } from "semantic-ui-react";
+import { Container, Dimmer, Loader, Message } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Calendar from "./components/Calendar";
@@ -30,7 +30,6 @@ function App() {
 
       {events.loadingState === "succeed" && <>
         <Container as="main" className="application">
-          <Header as="h1" textAlign="center">Calendar</Header>
           <Calendar />
         </Container>
         <Sidebar />

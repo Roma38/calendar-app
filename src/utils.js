@@ -1,4 +1,4 @@
-import { rowHeight, timeRows, workingHours } from "./constants";
+import { workingHours, fakeData } from "./constants";
 
 export function calculateWeek(date) {
   const currentWeekDay = date.getDay();
@@ -28,7 +28,7 @@ export function disposeEvent({ start, end }, date) {
 
   const top = workStart > eventStart ? 0 : (100 * (eventStart - workStart) / (workEnd - workStart)) + "%";
   const height = (((eventEnd < workEnd ? eventEnd : workEnd) - (eventStart > workStart ? eventStart : workStart)) * 100 / (workEnd - workStart)) + "%";
-  // debugger;
+
   return { top, height };
 }
 
@@ -36,6 +36,39 @@ export function convertToTime(date) {
   const splitedTime = new Date(date).toTimeString().split(":");
 
   return `${splitedTime[0]}:${splitedTime[1]}`
+}
+
+export function inputValuesToDate(dateString, timeString) {
+  const dateParts = dateString.split('-');
+  const timeParts = timeString.split(':');
+  dateParts[1] -= 1;
+  
+  return new Date(...dateParts, ...timeParts);
+}
+
+export function checkValidity({ startDate, startTime, endDate, endTime, type }, events) {
+  const errors = [];
+  const existingEvents = events.map(({ start, end }) => ({ start: new Date(start), end: new Date(end) }));
+  const newEventStart = inputValuesToDate(startDate, startTime);
+  const newEventEnd = inputValuesToDate(endDate, endTime);
+  
+  if (existingEvents.find(event => (
+    (newEventStart > event.start && newEventStart < event.end) ||
+    (newEventEnd > event.start && newEventEnd < event.end) ||
+    (event.start > newEventStart && event.start < newEventEnd && event.end > newEventStart && event.end < newEventEnd)
+  ))) {
+    errors.push("New event shouldn't cross with existing");
+  }
+
+  if (newEventStart >= newEventEnd) {
+    errors.push("Event can't start before it's over");
+  }
+
+  return errors;
+}
+
+export function generateID() {
+  return fakeData.reduce((newID, { id }) => newID < id ? id++ : newID, 0)
 }
 
 

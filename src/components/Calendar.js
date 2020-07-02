@@ -25,12 +25,12 @@ function Calendar() {
   return (
     <>
       {/*TODO: В заголовке отображается месяц и год выбраной даты. Сделать как положено */}
-      <Header as="h2" textAlign="center">
-        {`${date.toDateString().slice(4, 7)} ${weekDays[0].getDate()} 
-        -  ${weekDays[6].getDate()}, ${date.getFullYear()}`}
-      </Header>
-
       <div className="calendar-wrapper">
+        <Header as="h1" textAlign="center">Calendar</Header>
+        <Header as="h2" textAlign="center">
+          {`${date.toDateString().slice(4, 7)} ${weekDays[0].getDate()} 
+        -  ${weekDays[6].getDate()}, ${date.getFullYear()}`}
+        </Header>
         <div className="events-layer">
           {weekDays.map(date => <EventColumn key={date} date={date} events={filterEvents(date, events)} />)}
         </div>

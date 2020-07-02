@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { Label } from "semantic-ui-react";
 
-import { colors } from "../constants"
+import { eventTypes } from "../constants"
 import { disposeEvent, convertToTime } from "../utils";
 
 function EventColumn({ date, events }) {
@@ -12,7 +12,7 @@ function EventColumn({ date, events }) {
         key={event.id}
         className="event-block"
         style={disposeEvent(event, date)}
-        color={colors[event.type]}
+        color={eventTypes[event.type].color}
         title={event.comment}
       >
         <p>{convertToTime(event.start)} - {convertToTime(event.end)}</p>

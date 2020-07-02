@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from "./reducers/index";
-import { helloSaga, watchEventsLoadStart } from './sagas'
+import { watchEventsLoadStart, watchAddEvent } from './sagas'
 
 const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -11,7 +11,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(helloSaga);
+sagaMiddleware.run(watchAddEvent);
 sagaMiddleware.run(watchEventsLoadStart);
 
 export default store;
