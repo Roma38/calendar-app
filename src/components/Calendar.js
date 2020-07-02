@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from 'react';
-import { Table, Header } from "semantic-ui-react";
+import { Table, Header, Button, Input } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 import EventColumn from "./EventColumn";
 import { timeRows, weekDays as days, months } from "../constants";
-import { calculateWeek, filterEvents } from "../utils";
+import { calculateWeek, filterEvents, inputValuesToDate, dateToYYYYmmDD } from "../utils";
 
 const timeSection = time => <Fragment key={time}>
   <Table.Row>
@@ -29,8 +29,18 @@ function Calendar() {
         <Header as="h1" textAlign="center">Calendar</Header>
         <Header as="h2" textAlign="center">
           {`${date.toDateString().slice(4, 7)} ${weekDays[0].getDate()} 
-        -  ${weekDays[6].getDate()}, ${date.getFullYear()}`}
+          -  ${weekDays[6].getDate()}, ${date.getFullYear()}`}
         </Header>
+
+        <div className="calendar-navigation">
+          <Button circular icon='arrow left' onClick={() => setDate(new Date(date.setDate(date.getDate() - 7)))} />
+          <Input
+            type="date"
+            value={dateToYYYYmmDD(date)}
+            onChange={(e, { value }) => setDate(inputValuesToDate(value))} />
+          <Button circular icon='arrow right' onClick={() => setDate(new Date(date.setDate(date.getDate() + 7)))} />
+        </div>
+
         <div className="events-layer">
           {weekDays.map(date => <EventColumn key={date} date={date} events={filterEvents(date, events)} />)}
         </div>

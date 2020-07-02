@@ -38,20 +38,27 @@ export function convertToTime(date) {
   return `${splitedTime[0]}:${splitedTime[1]}`
 }
 
-export function inputValuesToDate(dateString, timeString) {
+export function inputValuesToDate(dateString, timeString = "0") {
   const dateParts = dateString.split('-');
   const timeParts = timeString.split(':');
   dateParts[1] -= 1;
-  
+
   return new Date(...dateParts, ...timeParts);
 }
+
+export function dateToYYYYmmDD(date) {
+  const mm = date.getMonth() + 1;
+  const dd = date.getDate();
+
+  return [date.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-');
+};
 
 export function checkValidity({ startDate, startTime, endDate, endTime, type }, events) {
   const errors = [];
   const existingEvents = events.map(({ start, end }) => ({ start: new Date(start), end: new Date(end) }));
   const newEventStart = inputValuesToDate(startDate, startTime);
   const newEventEnd = inputValuesToDate(endDate, endTime);
-  
+
   if (existingEvents.find(event => (
     (newEventStart > event.start && newEventStart < event.end) ||
     (newEventEnd > event.start && newEventEnd < event.end) ||
