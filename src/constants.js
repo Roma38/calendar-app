@@ -29,9 +29,9 @@ export const fakeData = [
   },
 ];
 
-// export const rowHeight = 42;
 export const workingHours = { start: 8, end: 18 };
 export const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+export const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 //TODO: было бы хорошо генерировать timeRows на основе workingHours
 export const timeRows = ["8am", "8:30am", "9am", "9:30am", "10am", "10:30am", "11am", "11:30am", "12pm", "12:30pm", "1pm", "1:30pm", "2pm", "2:30pm", "3pm", "3:30pm", "4pm", "4:30pm", "5pm", "5:30pm"];
 export const colors = ["yellow", "teal", "green", "blue", "violet "];

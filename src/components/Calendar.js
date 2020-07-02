@@ -3,7 +3,7 @@ import { Table, Header } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 import EventColumn from "./EventColumn";
-import { timeRows } from "../constants";
+import { timeRows, weekDays as days, months } from "../constants";
 import { calculateWeek, filterEvents } from "../utils";
 
 const timeSection = time => <Fragment key={time}>
@@ -40,7 +40,7 @@ function Calendar() {
             <Table.Row>
               <Table.HeaderCell />
               {weekDays.map(weekDay => <Table.HeaderCell key={weekDay}>
-                {weekDay.toDateString().slice(0, 10)} {/* TODO: Исправить */}
+                {`${days[weekDay.getDay()]}, ${months[weekDay.getMonth()]} ${weekDay.getDate()}`}
               </Table.HeaderCell>)}
             </Table.Row>
           </Table.Header>
