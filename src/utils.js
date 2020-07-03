@@ -1,19 +1,23 @@
-import { workingHours, fakeData } from "./constants";
+import { workingHours, fakeData, months } from "./constants";
 
 export function calculateWeek(date) {
   const currentWeekDay = date.getDay();
   const currentWeek = [];
+
   for (let i = 0; i < 7; i++) {
     currentWeek.push(new Date(date.valueOf() + (i - currentWeekDay) * 24 * 60 * 60 * 1000));
   }
+
   return currentWeek;
 };
 
 export function filterEvents(date, events) {
   const filterDate = new Date(date);
+
   return events.filter(({ start, end }) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
+
     return startDate.toDateString() === filterDate.toDateString()
       || endDate.toDateString() === filterDate.toDateString()
       || (date > startDate.getTime() && date < endDate.getTime())
@@ -41,6 +45,7 @@ export function convertToTime(date) {
 export function inputValuesToDate(dateString, timeString = "0") {
   const dateParts = dateString.split('-');
   const timeParts = timeString.split(':');
+
   dateParts[1] -= 1;
 
   return new Date(...dateParts, ...timeParts);
@@ -53,7 +58,7 @@ export function dateToYYYYmmDD(date) {
   return [date.getFullYear(), (mm > 9 ? '' : '0') + mm, (dd > 9 ? '' : '0') + dd].join('-');
 };
 
-export function checkValidity({ startDate, startTime, endDate, endTime, type }, events) {
+export function checkValidity({ startDate, startTime, endDate, endTime }, events) {
   const errors = [];
   const existingEvents = events.map(({ start, end }) => ({ start: new Date(start), end: new Date(end) }));
   const newEventStart = inputValuesToDate(startDate, startTime);
@@ -78,5 +83,15 @@ export function generateID() {
   return fakeData.reduce((newID, { id }) => newID < id ? id++ : newID, 0)
 }
 
-
-
+export function generateHeaderContent(displayedWeek) {
+  if (displayedWeek[0].getFullYear() !== displayedWeek[6].getFullYear()) {
+    return `${displayedWeek[0].getDate()} ${months[displayedWeek[0].getMonth()]} ${displayedWeek[0].getFullYear()} - 
+      ${displayedWeek[6].getDate()} ${months[displayedWeek[6].getMonth()]} ${displayedWeek[6].getFullYear()}`
+  } else if (displayedWeek[0].getMonth() !== displayedWeek[6].getMonth()) {
+    return `${displayedWeek[0].getDate()} ${months[displayedWeek[0].getMonth()]} - 
+      ${displayedWeek[6].getDate()} ${months[displayedWeek[6].getMonth()]} ${displayedWeek[6].getFullYear()}`
+  } else {
+    return `${displayedWeek[0].getDate()} - ${displayedWeek[6].getDate()} 
+      ${months[displayedWeek[6].getMonth()]} ${displayedWeek[6].getFullYear()}`
+  }
+}

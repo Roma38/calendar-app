@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import EventColumn from "./EventColumn";
 import { timeRows, weekDays as days, months } from "../constants";
-import { calculateWeek, filterEvents, inputValuesToDate, dateToYYYYmmDD } from "../utils";
+import { calculateWeek, filterEvents, inputValuesToDate, dateToYYYYmmDD, generateHeaderContent } from "../utils";
 
 const timeSection = time => <Fragment key={time}>
   <Table.Row>
@@ -24,13 +24,9 @@ function Calendar() {
 
   return (
     <>
-      {/*TODO: В заголовке отображается месяц и год выбраной даты. Сделать как положено */}
       <div className="calendar-wrapper">
         <Header as="h1" textAlign="center">Calendar</Header>
-        <Header as="h2" textAlign="center">
-          {`${date.toDateString().slice(4, 7)} ${weekDays[0].getDate()} 
-          -  ${weekDays[6].getDate()}, ${date.getFullYear()}`}
-        </Header>
+        <Header as="h2" textAlign="center" content={generateHeaderContent(weekDays)} />
 
         <div className="calendar-navigation">
           <Button circular icon='arrow left' onClick={() => setDate(new Date(date.setDate(date.getDate() - 7)))} />
