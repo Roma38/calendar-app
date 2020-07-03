@@ -45,10 +45,9 @@ export function convertToTime(date) {
 export function inputValuesToDate(dateString, timeString = "0") {
   const dateParts = dateString.split('-');
   const timeParts = timeString.split(':');
-
   dateParts[1] -= 1;
 
-  return new Date(...dateParts, ...timeParts);
+  return dateParts ? new Date(...dateParts, ...timeParts) : null;
 }
 
 export function dateToYYYYmmDD(date) {

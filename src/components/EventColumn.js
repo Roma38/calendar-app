@@ -6,8 +6,6 @@ import { disposeEvent, convertToTime } from "../utils";
 
 function EventColumn({ date, events }) {
 //TODO: по клику на событие, показывать модалку с комментарием и временем
-  console.log(events[0] && events[0].end)
-  console.log(date)
   return (
     <div className="events-layer__col">
       {events.map(event => <Label

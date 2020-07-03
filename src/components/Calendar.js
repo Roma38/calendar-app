@@ -33,7 +33,7 @@ function Calendar() {
           <Input
             type="date"
             value={dateToYYYYmmDD(date)}
-            onChange={(e, { value }) => setDate(inputValuesToDate(value))} />
+            onChange={(e, { value }) => value ? setDate(inputValuesToDate(value)) : null} />
           <Button circular icon='arrow right' onClick={() => setDate(new Date(date.setDate(date.getDate() + 7)))} />
         </div>
 
