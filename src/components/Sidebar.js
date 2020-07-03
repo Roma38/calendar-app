@@ -30,7 +30,6 @@ function Sidebar() {
         </Modal.Content>
       </Modal>
     </aside>
-
   );
 }
 

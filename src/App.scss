@@ -1,4 +1,4 @@
-$rowHeight: 42px;
+$rowHeight: 43px;
 
 .application.ui.container {
   padding: 30px 10px;
@@ -16,6 +16,7 @@ $rowHeight: 42px;
   position: fixed;
   right: 0;
   top: 0;
+  
   // to fix ie11 issues
   .ui.list .list > .item > .icon + .content, .ui.list .list > .item > .image + .content, .ui.list > .item > .icon + .content, .ui.list > .item > .image + .content {
     width: auto;
@@ -24,7 +25,6 @@ $rowHeight: 42px;
 }
 
 .calendar td, .calendar th {
-  box-sizing: border-box;
   width: (100% / 8);
   height: $rowHeight;
   overflow: hidden;
