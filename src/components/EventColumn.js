@@ -1,11 +1,13 @@
 import React from 'react';
 import { Label } from "semantic-ui-react";
 
-import { eventTypes } from "../constants"
+import { eventTypes, workingHours } from "../constants"
 import { disposeEvent, convertToTime } from "../utils";
 
 function EventColumn({ date, events }) {
 //TODO: по клику на событие, показывать модалку с комментарием и временем
+  console.log(events[0] && events[0].end)
+  console.log(date)
   return (
     <div className="events-layer__col">
       {events.map(event => <Label
@@ -15,7 +17,10 @@ function EventColumn({ date, events }) {
         color={eventTypes[event.type].color}
         title={event.comment}
       >
-        <p>{convertToTime(event.start)} - {convertToTime(event.end)}</p>
+        <p>
+          {date.setHours(workingHours.start) < new Date(event.start) ? convertToTime(event.start) : workingHours.start + ":00"} - 
+          {date.setHours(workingHours.end) > new Date(event.end) ? convertToTime(event.end) : workingHours.end + ":00"}
+        </p>
         <p>{event.comment}</p>
       </Label>)}
     </div>
