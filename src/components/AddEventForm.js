@@ -32,7 +32,7 @@ function AddEventForm({ closeHandler }) {
   };
 
   return (
-    <Form className="" onSubmit={submitHandler}>
+    <Form onSubmit={submitHandler}>
       <Form.Group widths='equal'>
         <Label>Start:
           <Form.Input

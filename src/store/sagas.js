@@ -4,22 +4,23 @@ import { EVENTS_LOADING, eventsLoadSucceed, ADD_EVENT, addEventSucceed } from ".
 
 const fakeFetch = (ms, data) => new Promise(res => setTimeout(() => res(data), ms))
 
+// Workers
 function* workerEventsLoadStart() {
   const data = yield call(() => fakeFetch(500, fakeData));
 
   yield put(eventsLoadSucceed(data));
 }
 
-export function* watchEventsLoadStart() {
-  yield takeEvery(EVENTS_LOADING, workerEventsLoadStart);
-}
-
-
-
 function* workerAddEvent({ payload }) {
   const data = yield call(() => fakeFetch(500, payload));
 
   yield put(addEventSucceed(data));
+}
+
+// Watchers
+
+export function* watchEventsLoadStart() {
+  yield takeEvery(EVENTS_LOADING, workerEventsLoadStart);
 }
 
 export function* watchAddEvent() {
